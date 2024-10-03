@@ -12,7 +12,7 @@ const MENUITEMS = [
   { state: 'button', type: 'link', name: 'Novo colaborador', icon: 'person_add' },
   { state: 'tabs', type: 'link', name: 'Novo gestor', icon: 'person_add' },
   { state: 'grid', type: 'link', name: 'Jornada de tabalho', icon: 'timer' },
-  { state: 'lists', type: 'link', name: 'Listar colaboradores', icon: 'badge' },
+  { state: 'lists', type: 'link', name: 'Listar informações', icon: 'badge' },
   { state: 'menu', type: 'link', name: 'Extrato de horas', icon: 'swap_vert' },
   
   //   type: 'link',

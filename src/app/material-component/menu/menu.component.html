@@ -1,15 +1,106 @@
- 
-<!-- ============================================================== -->
+ <!-- ============================================================== -->
 <!-- row -->
 <!-- ============================================================== -->
 <div class="row">
-		<!-- Card column -->
-		<div class="col-12">
-				<mat-card>
-					<mat-card-content>
-						<mat-card-title>Gerar banco de horas</mat-card-title>
-						<mat-card-subtitle>Imprimir banco de horas de colaboradores</mat-card-subtitle>
+    <!-- Card column -->
+    <div class="col-12">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>Imprimir relatório</mat-card-title>
+                <mat-card-subtitle>Registro de entrada e saída de funcionarios</mat-card-subtitle>
+            </mat-card-content>
+        </mat-card>
+    </div>
 
-						
-					</mat-card-content>    
-			 </mat-card>
+    <!-- Primeira Janela -->
+    <div class="col-md-4">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>Extrato de todos os funcionários</mat-card-title>
+                <mat-card-subtitle>Acompanhamento mensal:</mat-card-subtitle>
+
+                <div class="row">
+                    <label>Mês:</label>
+                    <select class="form-control">
+                        <option value="">JANEIRO</option>
+                        <option value="">FEVEREIRO</option>
+                        <option value="">MARÇO</option>
+                        <option value="">ABRIL</option>
+                        <option value="">MAIO</option>
+                        <option value="">JUNHO</option>
+                        <option value="">JULHO</option>
+                        <option value="">AGOSTO</option>
+                        <option value="">SETEMBRO</option>
+                        <option value="">OUTUBRO</option>
+                        <option value="">NOVEMBRO</option>
+                        <option value="">DEZEMBRO</option>
+                    </select>
+                </div>
+                
+                <!-- Separando o botão em uma nova linha -->
+                <div class="row mt-3">
+                    <button mat-raised-button color="primary">Enviar</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <!-- Segunda Janela -->
+    <div class="row col-md-8">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>Extrato personalizado por funcionário:</mat-card-title>
+                <mat-card-subtitle>Acompanhamento mensal:</mat-card-subtitle>
+
+                <div class="row">
+                    <!-- Select de Mês -->
+                    <div class="col-md-4 mb-4">
+                        <label>Mês:</label>
+                        <select class="form-control">
+                            <option value="">JANEIRO</option>
+                            <option value="">FEVEREIRO</option>
+                            <option value="">MARÇO</option>
+                            <option value="">ABRIL</option>
+                            <option value="">MAIO</option>
+                            <option value="">JUNHO</option>
+                            <option value="">JULHO</option>
+                            <option value="">AGOSTO</option>
+                            <option value="">SETEMBRO</option>
+                            <option value="">OUTUBRO</option>
+                            <option value="">NOVEMBRO</option>
+                            <option value="">DEZEMBRO</option>
+                        </select>
+                    </div>
+
+                    <!-- Select de Funcionário -->
+                    <div class="col-md-4 mb-4">
+                        <label>Funcionário:</label>
+                        <select class="form-control">
+                            <option value="">MATHEUS PEREIRA MACHADO VIANA"</option>
+                            <option value="">JESSE PEREIRA MACHADO VIANA</option>
+                            <option value="">BRUNA PEREIRA MACHADO VIANA</option>
+                            <option value="">ESTHER PEREIRA MACHADO VIANA</option>
+                        </select>
+                    </div>
+
+                    <!-- Select de Ano -->
+                    <div class="col-md-4 mb-4">
+                        <label>Ano:</label>
+                        <select class="form-control">
+                            <option value="">2020</option>
+                            <option value="">2021</option>
+                            <option value="">2022</option>
+                            <option value="">2023</option>
+                        </select>
+                    </div>
+
+                    <!-- Botão separado -->
+                    <div class="row">
+                        <button mat-raised-button color="primary">Enviar</button>
+                    </div>
+
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,13 +1,53 @@
 <!-- ============================================================== -->
 <!-- Fixed height Card Grid-->
 <!-- ============================================================== -->
-<div fxLayout="row">
-    <div fxFlex.gt-sm="100%" >
+<div>
+    <div>
         <mat-card>
             <mat-card-content>
               <mat-card-title>Registro de horários</mat-card-title>
                 <mat-card-subtitle>Os horários inseridos serão utilizados para registros futuros de novos funcionarios</mat-card-subtitle>
              
+            </mat-card-content>        
+        </mat-card>
+    </div>
+</div>     
+
+<div >
+    <div >
+        <mat-card>
+            <mat-card-content>
+              <mat-card-title>Registro de horários</mat-card-title>
+               
+                <div class="container-fluid" style="flex-direction: row;">
+                    <form>
+                        <div class="row">
+                           <div class="col-md-6 mb-4">
+                                <label>Inicio da jornada de trabalho:</label>
+                                <input type="time" class="form-control">
+                            
+                                <label>Inicio de almoço:</label>
+                                <input type="time" class="form-control">
+                            </div>
+
+                               <div class="col-md-6 mb-4">
+
+                                <label>Fim da jornada de trabalho:</label>
+                                <input type="time" class="form-control">
+                            
+                                <label>fim de almoço:</label>  
+                                <input type="time" class="form-control">
+                                
+                               </div>
+
+                            </div> 
+                        </form>
+
+                        <div class="row justify-content-center">
+                            <button type="submit" mat-raised-button color="primary" class="col-md-6">Salvar</button>
+                        </div>
+                </div>
+
             </mat-card-content>        
         </mat-card>
     </div>
