@@ -41,6 +41,8 @@ export class DialogOverviewExampleDialogComponent {
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
+
+
 export class DialogComponent {
   animal: string = '';
   name: string = '';
