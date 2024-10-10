@@ -11,50 +11,65 @@
 				<mat-card-subtitle>Os campos a seguir devem ser preenchidos para finalizar o cadastro!</mat-card-subtitle>
 						
 				<div class="container-fluid">
-					<form>
+
+					<div class="row" style="justify-content: center;">
+						<div class="alert alert-success col-md-6" style="text-align: center;" *ngIf="messageSuccess">
+							<strong>{{messageSuccess.message}}</strong>
+						   </div>
+					</div>
+					
+					<div class="row" style="justify-content: center;">
+						<div class="alert alert-danger col-md-6" style="text-align: center;" *ngIf="messageError">
+							<strong>{{messageError.message}}</strong>
+						   </div>
+					</div>
+
+					<form #cadastroForm="ngForm" (ngSubmit)="enviarDados(cadastroForm)">
 					  <div class="row justify-content-center">
 						<div class="col-md-5 mb-4">
 						  <label for="nome">Nome:</label>
-						  <input id="nome" type="text" class="form-control">
+						  <input id="nome" type="text" class="form-control" name="nome"  ngModel required="">
 						</div>
 			  
 						<div class="col-md-5 mb-4">
 						  <label for="dataNascimento">Data de nascimento:</label>
-						  <input id="dataNascimento" type="date" class="form-control">
+						  <input id="dataNascimento" type="date" class="form-control" name="dataNascimento" ngModel required="">
 						</div>
 					  </div>
 			  
 					  <div class="row justify-content-center">
 						<div class="col-md-5 mb-4">
 						  <label for="email">Email:</label>
-						  <input id="email" type="email" class="form-control">
+						  <input id="email" type="email" class="form-control" name="email"  ngModel required="">
 						</div>
 			  
 						<div class="col-md-5 mb-4">
 						  <label for="contato">Contato:</label>
-						  <input id="contato" type="tel" class="form-control">
+						  <input id="contato" type="tel" class="form-control" name="contato"  ngModel required="">
 						</div>
 					  </div>
 			  
 					  <div class="row justify-content-center">
 						<div class="col-md-5 mb-4">
 						  <label for="funcao">Função:</label>
-						  <input id="funcao" type="text" class="form-control">
+						  <input id="funcao" type="text" class="form-control" name="funcao"  ngModel required="">
 						</div>
 			  
 						<div class="col-md-5 mb-4">
 						  <label for="salario">Senha:</label>
-						  <input id="salario" type="password" class="form-control">
+						  <input id="salario" type="password" class="form-control" name="senha" ngModel required="">
 						</div>
 					  </div>
+					  <div class="row justify-content-center mt-4" style="gap: 10px;">
+						<!-- Botões de envio e cancelamento fora do mat-card -->
+					 <button mat-raised-button color="primary" class="col-md-5" type="submit" [disabled]="cadastroForm.invalid">Salvar</button>
+						 
+					  </div>
 					</form>
+					
 				  </div>
 
-				  <div class="row justify-content-center mt-4" style="gap: 10px;">
-					<!-- Botões de envio e cancelamento fora do mat-card -->
-				 <button mat-raised-button color="primary" class="col-md-5">Salvar</button>
-					 
-				  </div>
+				
 			
 			</mat-card-content>
 			

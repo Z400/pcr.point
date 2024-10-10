@@ -1,4 +1,5 @@
-   
+<div class="container-fluid">
+	 
 <!-- ============================================================== -->
 <!-- Fixed height Card Grid-->
 <!-- ============================================================== -->
@@ -15,25 +16,39 @@
 
 						<thead>
 							<tr>
-								<th>Funcionario</th>
+								<th>ID</th>
+								<th>Colaborador</th>
 								<th>Função</th>
 								<th>DT. Aniversario</th>
 								<th>DT. Registro</th>
-								<th>Sexo</th>
+								<th>Contato</th>
 								<th>Ação</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>MATHEUS PEREIRA MACHADO VIANA</td>
-								<td>PROGRAMADOR JUNIOR</td>
-								<td>02/09/1996</td>
-								<td>11/10/2024</td>
-								<td>MASCULINO</td>
-								<td>
-									<button class="btn btn-success" title="Imprimir documento">
-										<i class="bi bi-pencil"></i>
-									</button>
+							<tr *ngFor="let item of listColaboradores">
+								
+								<td>{{item.id}}
+								<td>{{item.nome}}</td>
+								<td>{{item.funcao}}</td>
+								<td>{{item.dataNascimento | date:"dd/MM/yyyy"}}</td>
+								<td>{{item.contato}}</td>
+								<td>{{item.email}}</td>
+								<td class="d-flex gap-1"> 
+									
+							<button class="btn btn-success" title="Alterar colaborador" (click)="selecionarItem(item)" data-bs-toggle="modal" data-bs-target="#modalAtualizar">
+							   <i class="bi bi-pencil"></i>
+							</button>
+											 
+							<button class="btn btn-primary" title="Imprimir dados">
+								<i class="bi bi-file-earmark-pdf"></i>
+							</button>
+
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelecao" title="Apagar colaborador" (click)="selecionarItem(item)">
+								<i class="bi bi-trash"></i>
+							</button>
+										
+
 							</td>
 							</tr>
 						</tbody>
@@ -62,41 +77,269 @@
 
 						<thead>
 							<tr>
-								 
-								<th>Inicio jornada</th>
-								<th>Inicio recesso</th>
-								<th>Fim recesso</th>
-								<th>Fim jornada</th>
+
+								<th>ID</th>
+								<th>Inicio trabalho</th>
+								<th>Inicio almoço</th>
+								<th>Fim almoço</th>
+								<th>Fim trabalho</th>
 								<th>Ação</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr *ngFor="let item of listItinerarios">
+								<td>{{item.id}}</td>
+								<td>{{item.inicioTrabalho}}</td>
+								<td>{{item.inicioAlmoco}}</td>
+								<td>{{item.fimAlmoco}}</td>
+								<td>{{item.fimTrabalho}}</td>
 								 
-								<td>08H00:00</td>
-								<td>12H00:00</td>
-								<td>14H00:00</td>
-								<td>18H00:00</td>
-								 
-								<td style="gap: 20;">
-									<button class="btn btn-success" title="Imprimir documento">
+								<td class="d-flex gap-1">
+									<button class="btn btn-success" title="Alterar itinerario" data-bs-toggle="modal"
+									 data-bs-target="#modalAtualizarItinerario" (click)="selecionarItemItinerario(item)">
 										<i class="bi bi-pencil"></i>
 									</button>
 
-									<button class="btn btn-danger" title="Imprimir documento">
+									<button class="btn btn-danger" title="Excluir itinerario"
+									 data-bs-toggle="modal" data-bs-target="#modalDelecaoItinerario" (click)="selecionarItemItinerario(item)">
 										<i class="bi bi-trash"></i>
 									</button>
+									
 							</td>
 							</tr>
 						</tbody>
-
-
 					</table>
-
-
 				</div>
 			 </div>
 			</mat-card-content>
 		</mat-card>
 	</div>
 </div> 
+
+<br>
+<br>
+<br>
+
+<!-- MODAL DE ATUALIZAÇÃO COLABORADOR-->
+<div class="modal fade" id="modalAtualizar" tabindex="-1" data-bs-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      
+		<div class="modal-content">
+
+            <div class="modal-header" style="background-color: rgba(37, 37, 37, 0.87);" >
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white;" >Atualizar colaborador?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+			
+			<form  #formAtualizacao="ngForm" (ngSubmit)="atualizarColaborador(formAtualizacao)">
+            <div class="modal-body" style="background-color: white;" >
+
+				<div class="alert alert-success" style="text-align: center;" *ngIf="messageSuccess">
+					<strong>{{messageSuccess.message}}</strong>
+				</div>
+
+				<div class="alert alert-danger" style="text-align: center;" *ngIf="messageError">
+					<strong>{{messageError}}</strong>
+				</div>
+
+
+
+                <div class="row" style="justify-content: center;">
+					<div class="col-md-12" style="text-align: center;">
+
+							<div class="row justify-content: center;">
+								<div class="col-md-6 " >
+									<label >Nome:</label>
+									<input type="text" class="form-control" name="nome" ngModel required="" value="{{itemSelecionado?.nome}}">
+								 </div>
+	
+							<div class="col-md-6">
+								<label>Email:</label>
+								<input type="text" class="form-control" name="email" ngModel required="" value="{{itemSelecionado?.email}}">
+							</div>	
+							</div>
+
+
+							<div class="row">
+								<div class="col-md-6" >
+									<label>Funcao:</label>
+									<input type="text" class="form-control" name="funcao" ngModel required="" value="{{itemSelecionado?.funcao}}">
+								 </div>
+	
+							<div class="col-md-6">
+								<label>Contato:</label>
+								<input type="tel" class="form-control" name="contato" ngModel required="" value="{{itemSelecionado?.contato}}">
+							</div>								
+							</div>
+
+							<div class="row">
+
+								<div class="col-md-6">
+									<label>Data de nascimento:</label>
+									<input type="date" class="form-control" name="dataNascimento" ngModel required="" value="{{itemSelecionado?.dataNascimento}}">
+								</div>
+
+								<div class="col-md-6">
+									<label>Jornada de trabalho </label>
+									<select class="form-control" name="jornadaTrabalho" ngModel required="">
+										<option value="{{itemSelecionado?.jornadaTrabalho}}">{{itemSelecionado?.jornadaTrabalho}}</option>
+									 </select>
+								</div>
+							</div>		 
+					</div>
+				</div>
+            </div>							 
+
+            <div class="modal-footer" style="background-color: rgba(37, 37, 37, 0.87);">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary" >Confirmar</button>
+            </div>
+		</form>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE DELEÇÃO COLABORADOR-->
+<div class="modal fade" id="modalDelecao" tabindex="-1" data-bs-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content"> 
+            <div class="modal-header" style="background-color: rgba(37, 37, 37, 0.87);">
+                <h3 class="modal-title fs-5" id="exampleModalLabel" style="color: white;">Excluir colaborador?</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+			<form #formExclusao="ngForm" (ngSubmit)="deletarColaborador(itemSelecionado?.id,formExclusao)">
+				<div class="modal-body" style="background-color:white">
+
+				<div class="alert alert-success" *ngIf="messageSuccessDeleting"> {{messageSuccessDeleting.message}}</div>
+				<div class="alert alert-danger" *ngIf="messageErrorDeleting"> {{messageErrorDeleting}}</div>
+
+                <div class="row" style="justify-content: center;">
+					<div class="col-md-12" style="text-align: center;">
+						<p style="color: black;">Para confirmar a exclusão digite "{{itemSelecionado?.nome}}" no campo a baixo! </p>
+ 						
+							<input type="text" class="form-control" style="border-color: red;"
+							style="background-color: rgba(37, 37, 37, 0.712); color: white;"  name="validarNome" ngModel required="">
+					</div>
+				</div>
+            </div>
+								 
+
+            <div class="modal-footer" style="background-color: rgba(37, 37, 37, 0.87);">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary"  [disabled]="formExclusao.invalid">Confirmar</button>
+            </div>
+		</form>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE ATUALIZAÇÃO ITINERARIO-->
+<div class="modal fade" id="modalAtualizarItinerario" tabindex="-1" data-bs-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      
+		<div class="modal-content">
+
+            <div class="modal-header" style="background-color: rgba(37, 37, 37, 0.87);" >
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white;" >Atualizar itinerario?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+			
+			<form  #formAtualizacaoItinerarios="ngForm">
+            <div class="modal-body" style="background-color: white;" >
+
+				<div class="alert alert-success" style="text-align: center;" *ngIf="messageSuccessAtualizacao">
+					<strong>{{messageSuccessAtualizacao.message}}</strong>
+				</div>
+
+				<div class="alert alert-danger" style="text-align: center;" *ngIf="messageErrorAtualizacao">
+					<strong>{{messageErrorAtualizacao}}</strong>
+				</div>
+
+
+
+                <div class="row" style="justify-content: center;">
+					<div class="col-md-12" style="text-align: center;">
+
+							<div class="row justify-content: center;">
+								<div class="col-md-6 " >
+									<label >Inicio expediente:</label>
+									<input type="time" class="form-control" name="inicioTrabalho" ngModel required="" value="{{itemSelecionadoItinerario?.inicioTrabalho}}">
+								 </div>
+	
+							<div class="col-md-6">
+								<label>Fim expediente::</label>
+								<input type="time" class="form-control" name="fimTrabalho" ngModel required="" value="{{itemSelecionadoItinerario?.fimTrabalho}}">
+							</div>	
+							</div>
+
+
+							<div class="row">
+								<div class="col-md-6" >
+									<label>Inicio almoço:</label>
+									<input type="time" class="form-control" name="inicioAlmoco" ngModel required="" value="{{itemSelecionadoItinerario?.inicioAlmoco}}">
+								 </div>
+	
+							<div class="col-md-6">
+								<label>Fim almoço:</label>
+								<input type="time" class="form-control" name="fimAlmoco" ngModel required="" value="{{itemSelecionadoItinerario?.fimAlmoco}}">
+							</div>								
+							</div>
+
+						 
+					</div>
+				</div>
+            </div>							 
+
+            <div class="modal-footer" style="background-color: rgba(37, 37, 37, 0.87);">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary" (click)="atualizarItinerario(formAtualizacaoItinerarios)">Confirmar</button>
+            </div>
+		</form>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE DELEÇÃO ITINERARIO-->
+<div class="modal fade" id="modalDelecaoItinerario" tabindex="-1" data-bs-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content"> 
+            <div class="modal-header" style="background-color: rgba(37, 37, 37, 0.87);">
+                <h3 class="modal-title fs-5" id="exampleModalLabel" style="color: white;">Excluir expediente?</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+			<form #formExclusao="ngForm">
+				<div class="modal-body" style="background-color:white">
+
+				<div class="alert alert-success" *ngIf="messageSuccessDeletingItinierario"> {{messageSuccessDeletingItinierario.message}}</div>
+				<div class="alert alert-danger" *ngIf="messageErrorDeletingItinierario"> {{messageErrorDeletingItinierario}}</div>
+
+                <div class="row" style="justify-content: center;">
+					<div class="col-md-12" style="text-align: center;">
+						<p style="color: black;">
+					Deseja apagar o expediente de: 
+					{{itemSelecionadoItinerario?.inicioTrabalho}} às {{itemSelecionadoItinerario?.inicioAlmoco}} 
+					e {{itemSelecionadoItinerario?.fimAlmoco}} às {{itemSelecionadoItinerario?.fimTrabalho}}?</p>
+								
+					</div>
+				</div>
+            </div>
+								 
+
+            <div class="modal-footer" style="background-color: rgba(37, 37, 37, 0.87);">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary" (click)="deletarItinerario(itemSelecionadoItinerario?.id)" >Confirmar</button>
+            </div>
+		</form>
+
+        </div>
+    </div>
+</div>
+
+
+
+ 

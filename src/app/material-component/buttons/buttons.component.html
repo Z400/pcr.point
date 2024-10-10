@@ -4,17 +4,29 @@
 	  <mat-card-subtitle>Preencha os campos abaixo para realizar um novo cadastro:</mat-card-subtitle>
   
 	  <div class="container-fluid">
+
+		<div class="row" style="justify-content: center;">
+			<div class="alert alert-success col-md-6" style="text-align: center;" *ngIf="messageSuccess">
+				<strong>{{messageSuccess.message}}</strong>
+			   </div>
+		</div>
 		
-		<form>
+		<div class="row" style="justify-content: center;">
+			<div class="alert alert-danger col-md-6" style="text-align: center;" *ngIf="messageError">
+				<strong>{{messageError.message}}</strong>
+			   </div>
+		</div>
+		
+		<form #cadastroForm="ngForm" (ngSubmit)="enviarDados(cadastroForm)">
 		  <div class="row justify-content-center">
 			<div class="col-md-5 mb-4">
 			  <label for="nome">Nome:</label>
-			  <input id="nome" type="text" class="form-control">
+			  <input id="nome" type="text" class="form-control" name="nome" required="" ngModel >
 			</div>
   
 			<div class="col-md-5 mb-4">
 			  <label for="dataNascimento">Data de nascimento:</label>
-			  <input id="dataNascimento" type="date" class="form-control">
+			  <input id="dataNascimento" type="date" class="form-control" name="dataNascimento" required="" ngModel>
 			</div>
 		  </div>
 
@@ -23,12 +35,12 @@
 		  <div class="row justify-content-center">
 			<div class="col-md-5 mb-4">
 			  <label for="email">Email:</label>
-			  <input id="email" type="email" class="form-control">
+			  <input id="email" type="email" class="form-control" name="email" required ngModel>
 			</div>
   
 			<div class="col-md-5 mb-4">
 			  <label for="contato">Contato:</label>
-			  <input id="contato" type="tel" class="form-control">
+			  <input id="contato" type="tel" class="form-control" name="contato" required ngModel>
 			</div>
 		  </div>
 
@@ -37,24 +49,28 @@
 		  <div class="row justify-content-center">
 			<div class="col-md-5 mb-4">
 			  <label for="funcao">Função:</label>
-			  <input id="funcao" type="text" class="form-control">
+			  <input id="funcao" type="text" class="form-control" name="funcao" required ngModel>
 			</div>
   
 			<div class="col-md-5 mb-4">
 			  <label for="JornadaTrabalho">Jornada de trabalho:</label>
-			 <select class="form-control">
-				<option value=""></option>
-				<option value="">SEGUNDA - FEIRA / SEXTA - FEIRA | 08H00 - 18H00 + 2 HORAS RECESSO</option>
+			 <select class="form-control" name="jornadaTrabalho" required ngModel>
+				 
+				<option  *ngFor= "let item of itinerarios;" value="{{item.inicioTrabalho}} às {{item.inicioAlmoco}} e {{item.fimAlmoco}} às {{item.fimTrabalho}}">
+					{{item.inicioTrabalho}} às {{item.inicioAlmoco}} e {{item.fimAlmoco}} às {{item.fimTrabalho}}</option>
 			 </select>
 			</div>
 		  </div>
+
+		  <div class="row justify-content-center mt-4" style="gap: 10px;">
+			<button mat-raised-button color="primary" class="col-md-5" [disabled]="cadastroForm.invalid" 
+			type="submit">Salvar</button>
+		  </div>
 		</form>
+
 	  </div>
 
-	  <div class="row justify-content-center mt-4" style="gap: 10px;">
-		<!-- Botões de envio e cancelamento fora do mat-card -->
-		<button mat-raised-button color="primary" class="col-md-5">Salvar</button>
-	  </div>
+	  
 	</mat-card-content>
   </mat-card>
   
