@@ -17,6 +17,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
+								<th>N° Registro</th>
 								<th>Colaborador</th>
 								<th>Função</th>
 								<th>DT. Aniversario</th>
@@ -29,6 +30,7 @@
 							<tr *ngFor="let item of listColaboradores">
 								
 								<td>{{item.id}}
+								<td>{{item.registro}}</td>
 								<td>{{item.nome}}</td>
 								<td>{{item.funcao}}</td>
 								<td>{{item.dataNascimento | date:"dd/MM/yyyy"}}</td>
@@ -243,7 +245,7 @@
 		<div class="modal-content">
 
             <div class="modal-header" style="background-color: rgba(37, 37, 37, 0.87);" >
-                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white;" >Atualizar itinerario?</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white;" >Atualizar expediente?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 			

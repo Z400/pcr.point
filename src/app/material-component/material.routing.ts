@@ -81,5 +81,6 @@ export const MaterialRoutes: Routes = [
   {
     path: 'slide-toggle',
     component: SlideToggleComponent
-  }
+  },
+ 
 ];

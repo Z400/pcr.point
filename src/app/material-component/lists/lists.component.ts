@@ -142,7 +142,8 @@ export class ListsComponent implements OnInit{
       contato: form.value.contato ? form.value.conta : this.itemSelecionado?.contato,
       dataNascimento: form.value.dataNascimento ? form.value.dataNascimento : this.itemSelecionado?.dataNascimento,
       jornadaTrabalho: form.value.jornadaTrabalho ? form.value.jornadaTrabalho : this.itemSelecionado?.jornadaTrabalho,
-      id: undefined
+      id: undefined,
+      registro: undefined
     }
       console.log("Dados funct atualizarColaborador:", data);
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página com Card</title>
+  <!-- Link do Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #2c2c2c; /* Preto claro */
+    }
+    .card {
+      background-color: #2b4869; /* Azul suave */
+      border-radius: 10px;
+    }
+    .card-body {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 col-md-6 col-lg-4">
+      <div class="card-body text-center">
+        <h5 class="card-title">Insira o seu N° de registro:</h5>
+        <div class="form-group">
+         <form #registrarPonto="ngForm">
+          <input type="text" class="form-control mb-3" placeholder="Digite aqui" name="numeroRegistro" required ngModel>
+         </form>
+        </div>
+        <button class="btn btn-success" [disabled]="registrarPonto.invalid">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link do JavaScript do Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

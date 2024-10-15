@@ -1,8 +1,18 @@
 import { Routes } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { RegistrarPontoComponent } from './registrar-ponto/registrar-ponto.component';
 
 export const AppRoutes: Routes = [
+  {
+    path: '',
+    component: HomepageComponent
+  },
+{
+  path:'registrarPonto',
+  component: RegistrarPontoComponent 
+},
   {
     path: '',
     component: FullComponent,

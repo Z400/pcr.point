@@ -38,7 +38,8 @@ export class ButtonsComponent implements OnInit{
       contato: form.value.contato,
       funcao: form.value.funcao,
       jornadaTrabalho: form.value.jornadaTrabalho,
-      id: undefined
+      id: undefined,
+      registro: undefined
     } 
     
     console.log("Dados do formularios:", data);
