@@ -1,5 +1,6 @@
 export class Colaborador{
     
+
     id: string | undefined
     registro: string | undefined
     nome: string | undefined
@@ -8,5 +9,6 @@ export class Colaborador{
     contato : string | undefined
     funcao: string | undefined
     jornadaTrabalho: string | undefined
+    codigo: string | undefined
 
 }

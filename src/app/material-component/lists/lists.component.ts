@@ -143,11 +143,12 @@ export class ListsComponent implements OnInit{
       dataNascimento: form.value.dataNascimento ? form.value.dataNascimento : this.itemSelecionado?.dataNascimento,
       jornadaTrabalho: form.value.jornadaTrabalho ? form.value.jornadaTrabalho : this.itemSelecionado?.jornadaTrabalho,
       id: undefined,
-      registro: undefined
+      registro: undefined,
+      codigo: undefined
     }
       console.log("Dados funct atualizarColaborador:", data);
 
-      this.service.atualizarColaborador(this.itemSelecionado?.id, data).
+      this.service.atualizarColaborador(this.itemSelecionado?.registro, data).
       subscribe (
         (res) => {
           this.messageSuccess = res;

@@ -16,7 +16,7 @@
 
 						<thead>
 							<tr>
-								<th>ID</th>
+								
 								<th>N° Registro</th>
 								<th>Colaborador</th>
 								<th>Função</th>
@@ -29,7 +29,7 @@
 						<tbody>
 							<tr *ngFor="let item of listColaboradores">
 								
-								<td>{{item.id}}
+								
 								<td>{{item.registro}}</td>
 								<td>{{item.nome}}</td>
 								<td>{{item.funcao}}</td>
@@ -211,7 +211,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-			<form #formExclusao="ngForm" (ngSubmit)="deletarColaborador(itemSelecionado?.id,formExclusao)">
+			<form #formExclusao="ngForm" (ngSubmit)="deletarColaborador(itemSelecionado?.registro,formExclusao)">
 				<div class="modal-body" style="background-color:white">
 
 				<div class="alert alert-success" *ngIf="messageSuccessDeleting"> {{messageSuccessDeleting.message}}</div>

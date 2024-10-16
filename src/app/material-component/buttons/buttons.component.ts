@@ -39,7 +39,8 @@ export class ButtonsComponent implements OnInit{
       funcao: form.value.funcao,
       jornadaTrabalho: form.value.jornadaTrabalho,
       id: undefined,
-      registro: undefined
+      registro: undefined,
+      codigo: undefined
     } 
     
     console.log("Dados do formularios:", data);
@@ -54,6 +55,7 @@ export class ButtonsComponent implements OnInit{
 
 
       }, error => {
+        console.log("Erro da função enviarDados:", error);
         this.messageSuccess = null;
         this.messageError = error;
           
