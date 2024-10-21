@@ -7,6 +7,7 @@ import { ApiResponse } from './buttons/ApiResponse';
 import { Gestor } from './tabs/Gestor';
 import { NovaRotina } from './grid/NovaRotina';
 import { AtualizarColaborador } from './lists/AtualizarColaborador';
+import { ApiResponsePonto } from './buttons/ApiResponsePonto';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,17 @@ export class MaterialComponentService {
       console.log("Data do servico:", data);
       return this.http.put<ApiResponse>(`${this.url}/atualizarItinerario/${codigo}`, data);
     }
+
+
+    ////////////////////////////////////REGISTRAR PONTO////////////////////////////////////////////////
+
+    public registrarPonto(codigo: number):Observable<ApiResponsePonto>{
+      console.log("Codigo no serviço:", codigo)
+      console.log("Tipo:", typeof codigo);
+      
+      return this.http.post<any>(`${this.url}/salvarPonto/${codigo}`,{});
+    }
+
   
 
 }
