@@ -60,12 +60,12 @@ export class RegistrarPontoComponent {
     const element = document.createElement('div');
     element.innerHTML = `
   <h3>Registro de ponto</h3>
-    <p>Nome: ${this.responseApi?.data?.dadosFuncionario?.nome ?? 'N/A'}</p>
-    <p>Registro: ${this.responseApi?.data?.dadosFuncionario?.registro ?? 'N/A'}</p>
-    <p>Jornada de trabalho: ${this.responseApi?.data?.dadosFuncionario?.jornadaTrabalho ?? 'N/A'}</p>
-    <p>Início de expediente: ${this.responseApi?.data?.inicioTrabalho?.slice(0, 6).join('-') ?? 'N/A'}</p>
-    <p>Início de almoço: ${this.responseApi?.data?.inicioAlmoco?.slice(0, 6).join('-') ?? 'N/A'}</p>
-    <p>Fim de almoço: ${this.responseApi?.data?.fimAlmoco?.slice(0, 6).join('-') ?? 'N/A'}</p>
+    <p>Nome: ${this.responseApi?.data?.dadosFuncionario?.nome ?? 'Não registrado'}</p>
+    <p>Registro: ${this.responseApi?.data?.dadosFuncionario?.registro ?? 'Não registrado'}</p>
+    <p>Jornada de trabalho: ${this.responseApi?.data?.dadosFuncionario?.jornadaTrabalho ?? 'Não registrado'}</p>
+    <p>Início de expediente: ${this.responseApi?.data?.inicioTrabalho?.slice(0, 6).join('-') ?? 'Não registrado'}</p>
+    <p>Início de almoço: ${this.responseApi?.data?.inicioAlmoco?.slice(0, 6).join('-') ?? 'Não registrado'}</p>
+    <p>Fim de almoço: ${this.responseApi?.data?.fimAlmoco?.slice(0, 6).join('-') ?? 'Não registrado'}</p>
       <p>Fim de expediente: ${this.responseApi?.data.fimTrabalho ? this.responseApi.data.fimTrabalho.slice(0, 6).join('-') : 'Não registrado'}</p>
     
     `

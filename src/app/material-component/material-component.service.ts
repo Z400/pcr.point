@@ -8,6 +8,8 @@ import { Gestor } from './tabs/Gestor';
 import { NovaRotina } from './grid/NovaRotina';
 import { AtualizarColaborador } from './lists/AtualizarColaborador';
 import { ApiResponsePonto } from './buttons/ApiResponsePonto';
+import { ApiResponseLogin } from '../login/ApiResponseLogin';
+import { Login } from '../login/Login';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +78,20 @@ export class MaterialComponentService {
       
       return this.http.post<any>(`${this.url}/salvarPonto/${codigo}`,{});
     }
+    
+    ////////////////////////////////////OBTER REGISTRO PERSONALIZADO////////////////////////////////////////////////
+    public buscarPorMesEano(month: number, year: number):Observable<ApiResponsePonto>{
+      return this.http.get<any>(`${this.url}/buscarPontoMesEano?month=${month}&year=${year}`);
+    }
 
+    public buscarPorColaborador(mes: string, nome: string, ano: number):Observable<ApiResponsePonto>{
+      return this.http.get<any>(`${this.url}/buscarPontoNomeMesEano?name=${nome}&month=${mes}&year=${ano}`);
+    }
+
+    public login(data: Login):Observable<ApiResponseLogin>{
+      return this.http.post<any>(`${this.url}/login`, data);
+      
+    }
   
 
 }

@@ -16,105 +16,129 @@
     <div class="col-md-4">
         <mat-card>
             <mat-card-content>
+
+                <div class="row" style="text-align: center;">
+                    <div class="alert alert-success" *ngIf="messageSuccessConsultaMesEano">{{messageSuccessConsultaMesEano.message}}</div>
+                    <div class="alert alert-danger" *ngIf="messageErrorConsultaMesEano">{{messageErrorConsultaMesEano.message}}</div>
+                    </div>
+
                 <mat-card-title>Extrato de todos os funcionários</mat-card-title>
                 <mat-card-subtitle>Acompanhamento mensal:</mat-card-subtitle>
 
-                <div class="row">
+                <form #formMesEano="ngForm" (ngSubmit)="buscarMesEano(formMesEano)"> 
+                <div class="row"> 
                     <label>Mês:</label>
+                   
                     <div class="col-md-8"> 
-                    <select class="form-control">
-                        <option value="">JANEIRO</option>
-                        <option value="">FEVEREIRO</option>
-                        <option value="">MARÇO</option>
-                        <option value="">ABRIL</option>
-                        <option value="">MAIO</option>
-                        <option value="">JUNHO</option>
-                        <option value="">JULHO</option>
-                        <option value="">AGOSTO</option>
-                        <option value="">SETEMBRO</option>
-                        <option value="">OUTUBRO</option>
-                        <option value="">NOVEMBRO</option>
-                        <option value="">DEZEMBRO</option>
+                    <select class="form-control" name="selectMes" required ngModel>
+                        <option value="" disabled="">MES</option>
+                        <option value="1">JANEIRO</option>
+                        <option value="2">FEVEREIRO</option>
+                        <option value="3">MARÇO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAIO</option>
+                        <option value="6">JUNHO</option>
+                        <option value="7">JULHO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SETEMBRO</option>
+                        <option value="10">OUTUBRO</option>
+                        <option value="11">NOVEMBRO</option>
+                        <option value="12">DEZEMBRO</option>
                     </select>
                 </div>
                 <div class="col-md-4 mb-2">
-                    <select name="" id="" class="form-control">
+                    <select class="form-control" name="selectAno" required="" ngModel >
+                        <option value="" disabled="">ANO</option>
                         <option value="2020">2020</option>
                         <option value="2021">2022</option>
                         <option value="2023">2023</option>
                         <option value="2024">2024</option>
                     </select>
                 </div>
-                </div>
-
-                
-
-
-                 
-                
+            </div>           
                 <!-- Separando o botão em uma nova linha -->
                 <div class="row mt-3">
-                    <button mat-raised-button color="primary">Enviar</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="formMesEano.invalid">Enviar</button>
                 </div>
+            </form>
+
             </mat-card-content>
         </mat-card>
     </div>
 
+
+
+
     <!-- Segunda Janela -->
-    <div class="row col-md-8">
+    <div class="col-md-8">
         <mat-card>
             <mat-card-content>
+                <div class="row" style="text-align: center;">
+                <div class="alert alert-success" *ngIf="messageSuccesBuscarPorColaborador">{{messageSuccesBuscarPorColaborador.message}}</div>
+                <div class="alert alert-danger" *ngIf="messageErrorBuscarPorColaborador">{{messageErrorBuscarPorColaborador.message}}</div>
+                </div>
                 <mat-card-title>Extrato personalizado por funcionário:</mat-card-title>
                 <mat-card-subtitle>Acompanhamento mensal:</mat-card-subtitle>
 
+                <form #formPorColaborador="ngForm" (ngSubmit)="buscarPorColaborador(formPorColaborador)">
                 <div class="row">
-                    <!-- Select de Mês -->
-                    <div class="col-md-4 mb-4">
-                        <label>Mês:</label>
-                        <select class="form-control">
-                            <option value="">JANEIRO</option>
-                            <option value="">FEVEREIRO</option>
-                            <option value="">MARÇO</option>
-                            <option value="">ABRIL</option>
-                            <option value="">MAIO</option>
-                            <option value="">JUNHO</option>
-                            <option value="">JULHO</option>
-                            <option value="">AGOSTO</option>
-                            <option value="">SETEMBRO</option>
-                            <option value="">OUTUBRO</option>
-                            <option value="">NOVEMBRO</option>
-                            <option value="">DEZEMBRO</option>
+           <!-- Select de Mês --> 
+                     <div class="col-md-4 mb-4">
+                       <label>Mês:</label>
+                        <select class="form-control" name="selectMes" ngModel required="" >
+                            <option value="" disabled="">MES</option>
+                            <option value="1">JANEIRO</option>
+                            <option value="2">FEVEREIRO</option>
+                            <option value="3">MARÇO</option>
+                            <option value="4">ABRIL</option>
+                            <option value="5">MAIO</option>
+                            <option value="6">JUNHO</option>
+                            <option value="7">JULHO</option>
+                            <option value="8">AGOSTO</option>
+                            <option value="9">SETEMBRO</option>
+                            <option value="10">OUTUBRO</option>
+                            <option value="11">NOVEMBRO</option>
+                            <option value="12">DEZEMBRO</option>
                         </select>
-                    </div>
+                     </div>
 
                     <!-- Select de Funcionário -->
                     <div class="col-md-4 mb-4">
                         <label>Funcionário:</label>
-                        <select class="form-control">
-                            <option value="">MATHEUS PEREIRA MACHADO VIANA"</option>
-                            <option value="">JESSE PEREIRA MACHADO VIANA</option>
-                            <option value="">BRUNA PEREIRA MACHADO VIANA</option>
-                            <option value="">ESTHER PEREIRA MACHADO VIANA</option>
+                        <select class="form-control" name="selectColaborador" required="" ngModel>
+                            <option value="" disabled="">FUNCIONARIO</option>
+                            <option *ngFor="let item of listagemColaboradores" value="{{item.nome}}">{{item.nome}}</option>
                         </select>
                     </div>
-
-                    <!-- Select de Ano -->
-                    <div class="col-md-4 mb-4">
+            
+                
+                     <!-- Select de Ano -->
+                     <div class="col-md-4 mb-4">
                         <label>Ano:</label>
-                        <select class="form-control">
-                            <option value="">2020</option>
-                            <option value="">2021</option>
-                            <option value="">2022</option>
-                            <option value="">2023</option>
+                        
+                        <select class="form-control" name="selectAno" required="" ngModel>
+                            <option value="" disabled="">ANO</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
                         </select>
                     </div>
 
                     <!-- Botão separado -->
                     <div class="row">
-                        <button mat-raised-button color="primary">Enviar</button>
+                        <button mat-raised-button color="primary" [disabled]="formPorColaborador.invalid">Enviar</button>
                     </div>
-
-                </div>
+                   </div>
+                </form>
+            
             </mat-card-content>
         </mat-card>
     </div>

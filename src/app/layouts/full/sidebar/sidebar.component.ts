@@ -3,7 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MenuItems } from '../../../shared/menu-items/menu-items';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-sidebar',
@@ -15,9 +15,12 @@ import { MatIconModule } from '@angular/material/icon';
 export class AppSidebarComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
-  private _mobileQueryListener: () => void;
+  nomeLocal = localStorage.getItem('currentUser');
 
+  private _mobileQueryListener: () => void;
+  
   constructor(
+    private router: Router,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     public menuItems: MenuItems
@@ -30,4 +33,8 @@ export class AppSidebarComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
+
+ 
+
 }

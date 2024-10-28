@@ -2,13 +2,13 @@
 <!-- ============================================================== -->
 <!-- Profile - style you can find in header.scss -->
 <!-- ============================================================== -->
-<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5 p-0 d-flex jc-c align-items-center"> <img src="assets/images/users/1.jpg" alt="user" class="profile-pic"> </button>
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5 p-0 d-flex jc-c align-items-center"> <img src="assets/images/users/user-icon-1024x1024-dtzturco.png" alt="user" class="profile-pic"> </button>
 
 <mat-menu #profile="matMenu" class="mymegamenu">
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/atualizarColaborador">
         <mat-icon>settings</mat-icon> Configurações </button>
    
-    <button mat-menu-item>
+    <button mat-menu-item (click)="deslogar()">
         <mat-icon>exit_to_app</mat-icon> Deslogar </button>
 </mat-menu>
 
