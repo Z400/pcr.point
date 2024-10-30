@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: "https://pcr-point-image.onrender.com"
+    apiUrl: "https://pcr-point-image.onrender.com/api"
   };
