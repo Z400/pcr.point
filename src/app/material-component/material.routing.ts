@@ -17,75 +17,88 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
 import { SliderComponent } from './slider/slider.component';
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 import { AtualizarColaboradorComponent } from './atualizar-colaborador/atualizar-colaborador.component';
+import { authGuard } from '../guards/auth.guard';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 export const MaterialRoutes: Routes = [
   {
+    path: "dashboard",
+    component: DashboardComponent,
+    canActivate:[authGuard]
+  },
+  {
     path: 'button',
-    component: ButtonsComponent
+    component: ButtonsComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'grid',
-    component: GridComponent
+    component: GridComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'lists',
-    component: ListsComponent
+    component: ListsComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'menu',
-    component: MenuComponent
+    component: MenuComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'tabs',
-    component: TabsComponent
+    component: TabsComponent,
+    canActivate: [authGuard]
   },
-  {
-    path: 'stepper',
-    component: StepperComponent
-  },
-  {
-    path: 'expansion',
-    component: ExpansionComponent
-  },
-  {
-    path: 'chips',
-    component: ChipsComponent
-  },
-  {
-    path: 'toolbar',
-    component: ToolbarComponent
-  },
-  {
-    path: 'progress-snipper',
-    component: ProgressSnipperComponent
-  },
-  {
-    path: 'progress',
-    component: ProgressComponent
-  },
-  {
-    path: 'dialog',
-    component: DialogComponent
-  },
-  {
-    path: 'tooltip',
-    component: TooltipComponent
-  },
-  {
-    path: 'snackbar',
-    component: SnackbarComponent
-  },
-  {
-    path: 'slider',
-    component: SliderComponent
-  },
-  {
-    path: 'slide-toggle',
-    component: SlideToggleComponent
-  },
+  // {
+  //   path: 'stepper',
+  //   component: StepperComponent
+  // },
+  // {
+  //   path: 'expansion',
+  //   component: ExpansionComponent
+  // },
+  // {
+  //   path: 'chips',
+  //   component: ChipsComponent
+  // },
+  // {
+  //   path: 'toolbar',
+  //   component: ToolbarComponent
+  // },
+  // {
+  //   path: 'progress-snipper',
+  //   component: ProgressSnipperComponent
+  // },
+  // {
+  //   path: 'progress',
+  //   component: ProgressComponent
+  // },
+  // {
+  //   path: 'dialog',
+  //   component: DialogComponent
+  // },
+  // {
+  //   path: 'tooltip',
+  //   component: TooltipComponent
+  // },
+  // {
+  //   path: 'snackbar',
+  //   component: SnackbarComponent
+  // },
+  // {
+  //   path: 'slider',
+  //   component: SliderComponent
+  // },
+  // {
+  //   path: 'slide-toggle',
+  //   component: SlideToggleComponent
+  // },
   {
     path:'atualizarColaborador',
-    component:AtualizarColaboradorComponent
+    component:AtualizarColaboradorComponent,
+    canActivate: [authGuard]
   }
  
 ];

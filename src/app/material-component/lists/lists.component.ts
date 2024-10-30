@@ -54,19 +54,16 @@ export class ListsComponent implements OnInit{
 
     selecionarItemItinerario(data: any){
       this.itemSelecionadoItinerario = data;
-      console.log("Itinerario selecionado:", this.itemSelecionadoItinerario);
-    }
+     }
 
 
   public listarColaboradores(){
     this.service.listarColaboradores().
     subscribe( 
       (res) => {
-        console.log("Res funct listar:", res);
-        this.listColaboradores = res;
+         this.listColaboradores = res;
       }, (error) => {
-        console.log("Error funct listar:", error);
-      }
+       }
     )
   }
 
@@ -75,10 +72,8 @@ export class ListsComponent implements OnInit{
     subscribe( 
       (res) => {
         this.listItinerarios = res;
-        console.log("Res itinirearios:", res);
-        }, (error) => {
-          console.log("Erro funct listItinerarios:", error);
-        }
+         }, (error) => {
+         }
     )
   }
 
@@ -93,8 +88,7 @@ export class ListsComponent implements OnInit{
               (res) => {
 
                 this.messageSuccessDeleting = res;
-                console.log("Colaborador deletado!", res);
-                this.messageErrorDeleting = null;
+                 this.messageErrorDeleting = null;
 
                 setTimeout( () => {
                   form.reset();
@@ -105,8 +99,7 @@ export class ListsComponent implements OnInit{
               (HttpErrorResponse) => {
                 this.messageSuccessDeleting = null; 
                 this.messageErrorDeleting = "Erro interno de servidor!";
-                console.log("Erro func deletarColaborador:", HttpErrorResponse);
-              }
+               }
             );
         }
         alert("O nome digitado não é igual ao colaborador selecionado!");
@@ -119,8 +112,7 @@ export class ListsComponent implements OnInit{
     subscribe(
       (res) => {
         this.messageSuccessDeletingItinierario = res;
-        console.log("Res funct deletarItinerario:", res);
-        this.messageErrorDeletingItinierario = null;
+         this.messageErrorDeletingItinierario = null;
         setTimeout(() => {
           window.location.reload();
         }, 3000)
@@ -128,8 +120,7 @@ export class ListsComponent implements OnInit{
 
       }, (error)  => {
         this.messageErrorDeletingItinierario = "Erro interno de servidor!";
-        console.log("Error funct deletarItinerario:", error);
-      }
+       }
     )
   }
 
@@ -146,8 +137,7 @@ export class ListsComponent implements OnInit{
       registro: undefined,
       codigo: undefined
     }
-      console.log("Dados funct atualizarColaborador:", data);
-
+ 
       this.service.atualizarColaborador(this.itemSelecionado?.registro, data).
       subscribe (
         (res) => {
@@ -180,20 +170,17 @@ export class ListsComponent implements OnInit{
       fimTrabalho: form.value.fimTrabalho ? form.value.fimTrabalho : this.itemSelecionadoItinerario?.fimTrabalho,
       id: undefined
     }
-      console.log("Dados passados para o backend:", data);
-      this.service.atualizarItinerarios(this.itemSelecionadoItinerario?.id, data).
+       this.service.atualizarItinerarios(this.itemSelecionadoItinerario?.id, data).
       subscribe(
         (res) => {
           this.messageSuccessAtualizacao = res;
           this.messageErrorAtualizacao = null;
-          console.log(res);
-          setTimeout( () => {
+           setTimeout( () => {
             form.reset();
             window.location.reload();
           }, 3000);
         }, (error) => {
-          console.log(error);
-          // if(HttpErrorResponse){
+           // if(HttpErrorResponse){
           //   this.messageErrorAtualizacao = "Erro interno de servidor!";
           //   this.messageSuccessAtualizacao = null;
           // }

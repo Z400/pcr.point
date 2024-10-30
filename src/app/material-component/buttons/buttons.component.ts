@@ -43,7 +43,6 @@ export class ButtonsComponent implements OnInit{
       codigo: undefined
     } 
     
-    console.log("Dados do formularios:", data);
     this.service.adicionarColaborador(data).subscribe(
       res => {
         this.messageSuccess = res;
@@ -55,8 +54,7 @@ export class ButtonsComponent implements OnInit{
 
 
       }, error => {
-        console.log("Erro da função enviarDados:", error);
-        this.messageSuccess = null;
+         this.messageSuccess = null;
         this.messageError = error;
           
       }
@@ -66,8 +64,7 @@ export class ButtonsComponent implements OnInit{
     this.service.listarItinerarios().subscribe
     (
        (res) => {
-         console.log("Itinerarios:", res);
-        this.itinerarios = res;
+         this.itinerarios = res;
 
     }, (error) => {
 

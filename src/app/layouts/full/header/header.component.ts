@@ -14,7 +14,7 @@ export class AppHeaderComponent {
     if (confirm("Encerrar sessão?")) {
       alert("Usuario deslogado!")
       localStorage.removeItem('currentUser');
-      this.router.navigate(['/login']);
+      this.router.navigate(['']);
     }
   }
 

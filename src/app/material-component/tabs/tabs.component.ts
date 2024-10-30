@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DemoMaterialModule } from 'src/app/demo-material-module';
@@ -14,9 +14,11 @@ import { ApiResponse } from '../buttons/ApiResponse';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss']
 })
-export class TabsComponent {
+export class TabsComponent{
 
-  constructor(private api: MaterialComponentService){}
+  constructor(private service: MaterialComponentService){}
+
+ 
 
   messageSuccess: ApiResponse | undefined | null;
   messageError: ApiResponse | undefined | null;
@@ -31,10 +33,9 @@ export class TabsComponent {
       senha: form.value.senha
     }
    
-    this.api.adicionarGestor(data).subscribe(
+    this.service.adicionarGestor(data).subscribe(
       (res) => {
-        console.log(res);
-        this.messageSuccess = res;
+         this.messageSuccess = res;
 
         setTimeout( () => {
           form.reset();
@@ -49,5 +50,6 @@ export class TabsComponent {
     )
   }
 
+ 
 
 }

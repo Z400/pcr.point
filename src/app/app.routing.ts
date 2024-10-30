@@ -4,6 +4,7 @@ import { FullComponent } from './layouts/full/full.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegistrarPontoComponent } from './registrar-ponto/registrar-ponto.component';
 import { LoginComponent } from './login/login.component';
+import { authGuard } from './guards/auth.guard';
 
 export const AppRoutes: Routes = [
   {
@@ -25,7 +26,8 @@ export const AppRoutes: Routes = [
       {
         path: '',
         redirectTo: '/dashboard',
-        pathMatch: 'full'
+        pathMatch: 'full',
+         
       },
       {
         path: '',

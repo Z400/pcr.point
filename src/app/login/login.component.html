@@ -14,8 +14,10 @@
       <div class="row" style="text-align: center;">
         <div class="alert alert-success" *ngIf="messageSuccessLogin">{{messageSuccessLogin.message}}</div>
       <div class="alert alert-danger" *ngIf="messageErrorLogin">{{messageErrorLogin.message}}</div>
+      <div class="alert alert-warning" *ngIf="messageErrorInterno">{{messageErrorInterno}}</div>
+      
       </div>
-      <h3 class="text-center mb-4">Login</h3>
+      <h3 class="text-center mb-4">AREA DO USUARIO</h3>
 
       <form #formLogin="ngForm" (ngSubmit)="login(formLogin)">
         <div class="mb-3">

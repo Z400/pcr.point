@@ -34,12 +34,10 @@ export class GridComponent {
       
     }
 
-    console.log(data);
-
+ 
     this.service.adicionarRotina(data).subscribe(
       res => {
-        console.log("Rotina adicionada com sucesso!", res);
-        this.messageSucces = res;
+         this.messageSucces = res;
         this.messageError = null;
         setTimeout( () => {
           form.reset();
@@ -47,8 +45,7 @@ export class GridComponent {
         }, 5000);
       }, error => {
        if(error.error && typeof error.error === 'object'){
-        console.log("Error", error);
-        this.messageError = Object.values(error.error);
+         this.messageError = Object.values(error.error);
         this.messageSucces = null;
        }  
       }

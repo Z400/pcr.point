@@ -59,8 +59,7 @@ export class MenuComponent implements OnInit{
           this.dadosColaborador = res;
           this.messageSuccessConsultaMesEano = res;
           this.messageErrorConsultaMesEano = null;
-          console.log("Dados:",this.dadosColaborador);
-          this.imprimir();
+           this.imprimir();
 
           setTimeout(() => {
             this.messageSuccessConsultaMesEano = null;
@@ -70,8 +69,7 @@ export class MenuComponent implements OnInit{
           }, (error) => {
             this.messageErrorConsultaMesEano = error.error;
             this.messageSuccessConsultaMesEano = null;
-          console.log(error);
-        }
+         }
       )
 
     } 
@@ -93,16 +91,14 @@ export class MenuComponent implements OnInit{
           this.dadosColaborador = res;
           this.imprimir();
           this.messageErrorBuscarPorColaborador = null;
-          console.log("Resposta:", res);
-          
+           
           setTimeout(() =>{
             this.messageSuccesBuscarPorColaborador = null;
           },3000)
         }, (error) => {
           this.messageSuccesBuscarPorColaborador = null;
           this.messageErrorBuscarPorColaborador = error.error;
-          console.log("Error:", error);
-        }
+         }
       )
       
     }
@@ -142,9 +138,7 @@ export class MenuComponent implements OnInit{
           const nomeArquivo = `informacoes_${nomeColaborador.replace(/\s+/g, '_')}.pdf`;
           doc.save(nomeArquivo);
         });
-      } else {
-        console.error('Nenhum dado de colaborador disponível.');
-      }
+      }  
     }
 
 

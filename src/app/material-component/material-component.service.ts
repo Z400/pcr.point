@@ -10,6 +10,7 @@ import { AtualizarColaborador } from './lists/AtualizarColaborador';
 import { ApiResponsePonto } from './buttons/ApiResponsePonto';
 import { ApiResponseLogin } from '../login/ApiResponseLogin';
 import { Login } from '../login/Login';
+import { DadosAdministrador} from './atualizar-colaborador/DadosAdministrador';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,10 @@ export class MaterialComponentService {
     return this.http.get<NovaRotina[]>(`${this.url}/listarItinerario`);
   }
 
+  public listarAdministadorPorEmail(email: string):Observable<DadosAdministrador>{
+    return this.http.get<DadosAdministrador>(`${this.url}/listarDadosGestor/${email}`);
+  }
+
 
     ////////////////////////////////////DELETE////////////////////////////////////////////////
 
@@ -67,6 +72,10 @@ export class MaterialComponentService {
       console.log("Codigo do servico:", codigo);
       console.log("Data do servico:", data);
       return this.http.put<ApiResponse>(`${this.url}/atualizarItinerario/${codigo}`, data);
+    }
+
+    public atualizarAdministrador(codigo: any, data: DadosAdministrador):Observable<ApiResponse>{
+      return this.http.put<ApiResponse>(`${this.url}/atualizarAdministrador/${codigo}`, data);
     }
 
 

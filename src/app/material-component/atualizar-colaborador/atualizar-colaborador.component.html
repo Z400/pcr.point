@@ -2,66 +2,95 @@
 <!-- row -->
 <!-- ============================================================== -->
 <div class="row">
-    <!-- Card column -->
-    <div class="col-12">
-            <mat-card>
+  <!-- Card column -->
+  <div class="col-12">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Atualizar administrador</mat-card-title>
+        <mat-card-subtitle>Para atualização de um dado em específico, não é necessário atualização de todos os campos!</mat-card-subtitle>
 
-            <mat-card-content>
-            <mat-card-title>Novo gestor </mat-card-title>
-            <mat-card-subtitle>Os campos a seguir devem ser preenchidos para finalizar o cadastro!</mat-card-subtitle>
-                    
-            <div class="container-fluid">
+        <div class="container-fluid">
+
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              
+            <div class="alert alert-success" *ngIf="messageSuccess" style="text-align: center;">
+              {{messageSuccess.message}}
+            </div>
             
-                <form >
-                  <div class="row justify-content-center">
-                    <div class="col-md-5 mb-4">
-                      <label for="nome">Nome:</label>
-                      <input id="nome" type="text" class="form-control" name="nome"  ngModel required="">
-                    </div>
-          
-                    <div class="col-md-5 mb-4">
-                      <label for="dataNascimento">Data de nascimento:</label>
-                      <input id="dataNascimento" type="date" class="form-control" name="dataNascimento" ngModel required="">
-                    </div>
-                  </div>
-          
-                  <div class="row justify-content-center">
-                    <div class="col-md-5 mb-4">
-                      <label for="email">Email:</label>
-                      <input id="email" type="email" class="form-control" name="email"  ngModel required="">
-                    </div>
-          
-                    <div class="col-md-5 mb-4">
-                      <label for="contato">Contato:</label>
-                      <input id="contato" type="tel" class="form-control" name="contato"  ngModel required="">
-                    </div>
-                  </div>
-          
-                  <div class="row justify-content-center">
-                    <div class="col-md-5 mb-4">
-                      <label for="funcao">Função:</label>
-                      <input id="funcao" type="text" class="form-control" name="funcao"  ngModel required="" disabled="">
-                    </div>
-          
-                    <div class="col-md-5 mb-4">
-                      <label for="salario">Senha:</label>
-                      <input id="salario" type="password" class="form-control" name="senha" ngModel required="">
-                    </div>
-                  </div>
-                  <div class="row justify-content-center mt-4" style="gap: 10px;">
-                    <!-- Botões de envio e cancelamento fora do mat-card -->
-                 <button mat-raised-button color="primary" class="col-md-5" type="submit">Salvar</button>
-                     
-                  </div>
-                </form>
-                
+            <div class="alert alert-danger" *ngIf="messageError" style="text-align: center;">
+              {{messageError.message}}
+            </div>
+            
+          </div>
+          </div>
+
+
+          <form #formAtualizarAdm="ngForm" (ngSubmit)="atualizarAdministrador(formAtualizarAdm)">
+            <!-- Primeira linha de campos -->
+            <div class="row justify-content-center">
+              <div class="col-md-5 mb-4">
+                <label for="nome">Nome:</label>
+                <input id="nome" type="text" class="form-control" name="nome" ngModel required [value]="dadosAdministrador?.nome">
               </div>
 
-            
-        
-        </mat-card-content>
-        
-             
-            </mat-card>    
-    </div>
+              <div class="col-md-5 mb-4">
+                <label for="dataNascimento">Data de nascimento:</label>
+                <input id="dataNascimento" type="date" class="form-control" name="dataNascimento" ngModel required [value]="dadosAdministrador?.dataNascimento">
+              </div>
+            </div>
+
+            <!-- Segunda linha de campos -->
+            <div class="row justify-content-center">
+              <div class="col-md-5 mb-4">
+                <label for="email">Email:</label>
+                <input id="email" type="email" class="form-control" name="email" ngModel required [value]="dadosAdministrador?.email">
+              </div>
+
+              <div class="col-md-5 mb-4">
+                <label for="contato">Contato:</label>
+                <input id="contato" type="tel" class="form-control" name="contato" ngModel required [value]="dadosAdministrador?.contato">
+              </div>
+            </div>
+
+            <!-- Terceira linha de campos -->
+            <div class="row justify-content-center">
+              <div class="col-md-5 mb-4">
+                <label for="funcao">Função:</label>
+                <input id="funcao" type="text" class="form-control" name="funcao" ngModel required disabled [value]="dadosAdministrador?.funcao">
+              </div>
+
+              <!-- Campo de senha com visibilidade alternável -->
+              <div class="col-md-5 mb-4">
+                <label for="salario">Senha:</label>
+                <div class="input-group">
+                  <input
+                    id="salario"
+                    [type]="showPassword ? 'text' : 'password'"
+                    class="form-control"
+                    name="senha"
+                    ngModel
+                    required
+                    [value]="dadosAdministrador?.senha"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    (click)="togglePasswordVisibility()"
+                  >
+                    {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Linha para o botão de envio -->
+            <div class="row justify-content-center mt-4" style="gap: 10px;">
+              <button mat-raised-button color="primary" class="col-md-5" type="submit">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
