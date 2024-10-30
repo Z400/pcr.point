@@ -27,27 +27,27 @@ export const MaterialRoutes: Routes = [
     canActivate:[authGuard]
   },
   {
-    path: 'button',
+    path: 'novo_colaborador',
     component: ButtonsComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'grid',
+    path: 'nova_jornada',
     component: GridComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'lists',
+    path: 'exibir_informacoes',
     component: ListsComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'menu',
+    path: 'extrato_de_hora',
     component: MenuComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'tabs',
+    path: 'novo_administrador',
     component: TabsComponent,
     canActivate: [authGuard]
   },

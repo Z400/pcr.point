@@ -9,11 +9,11 @@ export interface Menu {
 
 const MENUITEMS = [
   { state: 'dashboard', name: 'Dashboard', type: 'link', icon: 'av_timer' },
-  { state: 'button', type: 'link', name: 'Novo colaborador', icon: 'person_add' },
-  { state: 'tabs', type: 'link', name: 'Novo administrador', icon: 'person_add' },
-  { state: 'grid', type: 'link', name: 'Jornada de tabalho', icon: 'timer' },
-  { state: 'lists', type: 'link', name: 'Listar informações', icon: 'badge' },
-  { state: 'menu', type: 'link', name: 'Extrato de horas', icon: 'swap_vert' },
+  { state: 'novo_colaborador', type: 'link', name: 'Novo colaborador', icon: 'person_add' },
+  { state: 'novo_administrador', type: 'link', name: 'Novo administrador', icon: 'person_add' },
+  { state: 'nova_jornada', type: 'link', name: 'Jornada de tabalho', icon: 'timer' },
+  { state: 'exibir_informacoes', type: 'link', name: 'Listar informações', icon: 'badge' },
+  { state: 'extrato_de_hora', type: 'link', name: 'Extrato de horas', icon: 'swap_vert' },
   
   //   type: 'link',
   //   name: 'Progress Bar',
