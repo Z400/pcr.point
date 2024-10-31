@@ -51,8 +51,13 @@ export const MaterialRoutes: Routes = [
     component: TabsComponent,
     canActivate: [authGuard]
   },
+  {
+    path:'atualizarColaborador',
+    component:AtualizarColaboradorComponent,
+    canActivate: [authGuard]
+  }
   // {
-  //   path: 'stepper',
+  //   path: 'stepper', 
   //   component: StepperComponent
   // },
   // {
@@ -95,10 +100,6 @@ export const MaterialRoutes: Routes = [
   //   path: 'slide-toggle',
   //   component: SlideToggleComponent
   // },
-  {
-    path:'atualizarColaborador',
-    component:AtualizarColaboradorComponent,
-    canActivate: [authGuard]
-  }
+ 
  
 ];
