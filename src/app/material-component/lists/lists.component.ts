@@ -130,7 +130,7 @@ export class ListsComponent implements OnInit{
       nome: form.value.nome ? form.value.nome : this.itemSelecionado?.nome,
       funcao: form.value.funcao ? form.value.funcao : this.itemSelecionado?.funcao,
       email: form.value.email ? form.value.email : this.itemSelecionado?.email,
-      contato: form.value.contato ? form.value.conta : this.itemSelecionado?.contato,
+      contato: form.value.contato ? form.value.contato : this.itemSelecionado?.contato,
       dataNascimento: form.value.dataNascimento ? form.value.dataNascimento : this.itemSelecionado?.dataNascimento,
       jornadaTrabalho: form.value.jornadaTrabalho ? form.value.jornadaTrabalho : this.itemSelecionado?.jornadaTrabalho,
       id: undefined,
