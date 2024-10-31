@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: "https://pcr-point-image.onrender.com/api"
+    apiUrl: "http://localhost:8080/api"
     //http://localhost:8080/api
   };

@@ -124,7 +124,7 @@ export class MenuComponent implements OnInit{
 
 
             const yOffset = 10 + (index * 35); // Aumentei o espaçamento para evitar sobreposição
-             doc.text(`Colaborador: ${obj.dadosFuncionario.nome}`, 10, yOffset);
+             doc.text(`Colaborador: ${obj.dadosFuncionario.nome}`, 10, yOffset + 5);
             doc.text(`Data de registro: ${obj.pontoRegistrado}`, 10, yOffset + 10);
             doc.text(`Início trabalho: ${obj.inicioTrabalho || '-'}`, 10, yOffset + 15); // Mantive o espaçamento
             doc.text(`Início almoço: ${obj.inicioAlmoco || '-'}`, 10, yOffset + 20);
