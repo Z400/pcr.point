@@ -12,49 +12,51 @@
 			 <div class="row">
 				<div class="col-md-12">
 				 
-					<table class="table table-condensed table-hover">
+					<div class="table-responsive">
+						<table class="table table-condensed table-hover">
 
-						<thead>
-							<tr>
-								
-								<th>N° Registro</th>
-								<th>Colaborador</th>
-								<th>Função</th>
-								<th>DT. Aniversario</th>
-								<th>Contato</th>
-								<th>Email</th>
-								<th>Ação</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let item of listColaboradores">
-								
-								
-								<td>{{item.registro}}</td>
-								<td>{{item.nome}}</td>
-								<td>{{item.funcao}}</td>
-								<td>{{item.dataNascimento | date:"dd/MM/yyyy"}}</td>
-								<td>{{item.contato}}</td>
-								<td>{{item.email}}</td>
-								<td class="d-flex gap-1"> 
+							<thead>
+								<tr>
 									
-							<button class="btn btn-success" title="Alterar colaborador" (click)="selecionarItem(item)" data-bs-toggle="modal" data-bs-target="#modalAtualizar">
-							   <i class="bi bi-pencil"></i>
-							</button>
-											 
-							 
-
-							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelecao" title="Apagar colaborador" (click)="selecionarItem(item)">
-								<i class="bi bi-trash"></i>
-							</button>
+									<th>N° Registro</th>
+									<th>Colaborador</th>
+									<th>Função</th>
+									<th>DT. Aniversario</th>
+									<th>Contato</th>
+									<th>Email</th>
+									<th>Ação</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let item of listColaboradores">
+									
+									
+									<td>{{item.registro}}</td>
+									<td>{{item.nome}}</td>
+									<td>{{item.funcao}}</td>
+									<td>{{item.dataNascimento | date:"dd/MM/yyyy"}}</td>
+									<td>{{item.contato}}</td>
+									<td>{{item.email}}</td>
+									<td class="d-flex gap-1"> 
 										
-
-							</td>
-							</tr>
-						</tbody>
-
-
-					</table>
+								<button class="btn btn-success" title="Alterar colaborador" (click)="selecionarItem(item)" data-bs-toggle="modal" data-bs-target="#modalAtualizar">
+								   <i class="bi bi-pencil"></i>
+								</button>
+												 
+								 
+	
+								<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelecao" title="Apagar colaborador" (click)="selecionarItem(item)">
+									<i class="bi bi-trash"></i>
+								</button>
+											
+	
+								</td>
+								</tr>
+							</tbody>
+	
+	
+						</table>
+					</div>
 
 
 				</div>
@@ -72,13 +74,12 @@
 				<mat-card-subtitle>Horario de expediente e recesso de SEGUNDA a SEXTA: </mat-card-subtitle>
 			 <div class="row">
 				<div class="col-md-12">
-				 
-					<table class="table table-condensed table-hover">
 
+					<div class="table-responsive">
+
+						<table class="table table-condensed table-hover">
 						<thead>
-							<tr>
-
-								 
+							<tr>								 
 								<th>Inicio trabalho</th>
 								<th>Inicio almoço</th>
 								<th>Fim almoço</th>
@@ -109,6 +110,8 @@
 							</tr>
 						</tbody>
 					</table>
+
+					</div>
 				</div>
 			 </div>
 			</mat-card-content>

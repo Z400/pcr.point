@@ -18,7 +18,8 @@ import { DadosAdministrador} from './atualizar-colaborador/DadosAdministrador';
 export class MaterialComponentService {
   url: String = environment.apiUrl; 
 
-  constructor(private http: HttpClient) { }
+  
+   constructor(private http: HttpClient) { }
 
   
 
