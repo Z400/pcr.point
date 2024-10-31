@@ -27,8 +27,11 @@
       <div class="alert alert-success" style="text-align: center;" *ngIf="messageSuccess">
         <strong style="text-align: center;">{{messageSuccess.message}}</strong>
       </div>
-      <div class="alert alert-danger" style="text-align: center;" *ngIf="messageError?.error">
-        <strong style="text-align: center;">{{messageError?.message}}</strong>
+      <div class="alert alert-danger" style="text-align: center;" *ngIf="messageError">
+        <strong style="text-align: center;">{{messageError.message}}</strong>
+      </div>
+      <div class="alert alert-warning" style="text-align: center;" *ngIf="messageErrorInterno">
+        <strong style="text-align: center;">{{messageErrorInterno}}</strong>
       </div>
     </div>
       <div class="card-body text-center">

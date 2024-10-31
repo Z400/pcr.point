@@ -70,9 +70,7 @@ export class MaterialComponentService {
     }
 
     public atualizarItinerarios(codigo: any, data:NovaRotina):Observable<ApiResponse>{
-      console.log("Codigo do servico:", codigo);
-      console.log("Data do servico:", data);
-      return this.http.put<ApiResponse>(`${this.url}/atualizarItinerario/${codigo}`, data);
+     return this.http.put<ApiResponse>(`${this.url}/atualizarItinerario/${codigo}`, data);
     }
 
     public atualizarAdministrador(codigo: any, data: DadosAdministrador):Observable<ApiResponse>{
@@ -83,10 +81,7 @@ export class MaterialComponentService {
     ////////////////////////////////////REGISTRAR PONTO////////////////////////////////////////////////
 
     public registrarPonto(codigo: number):Observable<ApiResponsePonto>{
-      console.log("Codigo no serviço:", codigo)
-      console.log("Tipo:", typeof codigo);
-      
-      return this.http.post<any>(`${this.url}/salvarPonto/${codigo}`,{});
+    return this.http.post<any>(`${this.url}/salvarPonto/${codigo}`,{});
     }
     
     ////////////////////////////////////OBTER REGISTRO PERSONALIZADO////////////////////////////////////////////////

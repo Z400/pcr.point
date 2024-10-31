@@ -21,6 +21,8 @@ export class RegistrarPontoComponent {
 
   messageError: ApiResponsePonto | undefined | null;
 
+  messageErrorInterno: String | undefined | null;
+
 
   constructor(private service: MaterialComponentService){}
 
@@ -40,17 +42,20 @@ export class RegistrarPontoComponent {
         this.responseApi = res;
         this.messageSuccess = res;
         this.messageError = null;
+        this.messageErrorInterno = null;
         this.imprimir();
         setTimeout( () => {
           window.location.reload();
           form.reset();
         }, 3000);
- 
-       
-      }, (error) => {
+     }, (error) => {
         this.messageSuccess = null;
-        this.messageError = error;
-        console.log(error);
+        if(error.status === 0){
+           this.messageErrorInterno = "Erro interno de servidor";
+        }else{
+          this.messageError = error.error;
+        }
+        console.log("ERROR:", error);
       }
     )
   }
