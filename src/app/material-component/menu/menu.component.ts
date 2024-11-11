@@ -109,12 +109,11 @@ export class MenuComponent implements OnInit{
         doc.setFontSize(10);
         let yOffset = 10;
     
-        // Garantir que não há dados duplicados antes de adicionar ao PDF
         this.dadosColaborador.data.forEach((obj: any) => {
-          // Verifica se o espaço disponível na página está sendo preenchido
-          if (yOffset > 270) {  // Se o yOffset exceder 270, cria uma nova página
+     
+          if (yOffset > 270) { 
             doc.addPage();
-            yOffset = 10; // Reinicia o deslocamento vertical para a nova página
+            yOffset = 10; 
           }
     
           // Verifique a existência dos campos antes de adicionar ao PDF
