@@ -1,0 +1,79 @@
+<div class="row">
+    <mat-card>
+        <mat-card-content>
+            <mat-card-title>
+               Buscar registros em banco de horas:
+                <mat-card-subtitle>
+                    Essa consulta retorna todos os dados registrados em banco de horas do colaborador principal!
+                </mat-card-subtitle>
+            </mat-card-title>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="row" style="justify-content: center;">
+    <div class="col-md-6">
+        <mat-card>
+        <mat-card-content>
+            <mat-card-title>
+
+                <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning" *ngIf="messageErrorRegistroInexistente">
+                            <p style="font-size: 18px;">{{messageErrorRegistroInexistente}}</p>
+                            </div>
+                        </div>
+                   </div>
+                <div class="row" *ngIf="messageSuccessDeletarRegistrosPorNome">
+                
+                    <div class="col-md-12">
+                    <div class="alert alert-success">
+                       <p style="font-size: 20px;"> {{messageSuccessDeletarRegistrosPorNome.message}}</p>
+                    </div>                   
+                  </div> 
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger" *ngIf="messageErrorDeletarRegistros">
+                            <p style="font-size: 20px;"> {{messageErrorDeletarRegistros}}</p>
+                         </div>
+                      </div>
+                </div>
+
+               Selecione o colaborador:             
+               <div class="row justify-content-center">
+                <form #formColaborador="ngForm" (ngSubmit)="buscarRegistrosPorNome(formColaborador)" class="d-flex">
+                    <div class="col-md-6">
+                        <select class="form-control" required="" ngModel name="optionColaborador">
+                            <option value="" selected disabled>Colaborador</option>
+                            <option *ngFor="let item of listaDeColaboradores" [value]="item.nome">{{item.nome}}</option>
+                        </select>
+                    </div>
+            
+                    <div class="col-md-3 d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary ms-2" [disabled]="formColaborador.invalid">
+                            Buscar
+                        </button>
+                    </div>
+                </form>
+             
+            </div>
+            </mat-card-title>
+        </mat-card-content>
+    </mat-card>
+    </div>    
+</div>
+
+ <div class="row"  *ngIf="tabela">
+    <mat-card>
+        <mat-card-content  style="justify-content: center;">
+        <mat-card-title>Dados encontrados!</mat-card-title>
+        <mat-card-subtitle>Ao clicar neste botão, a exclusao dos dados será processada, <button class="btn btn-danger" type="submit" (click)="deletarRegistrosPorNome()">Excluir</button>?</mat-card-subtitle>
+        
+        </mat-card-content>
+    </mat-card>
+
+    
+ </div>

@@ -19,7 +19,14 @@ import { ApiResponse } from '../buttons/ApiResponse';
 })
 export class ListsComponent implements OnInit{
 
-    constructor(private service: MaterialComponentService, private location: Location){}
+  constructor(private service: MaterialComponentService, private location: Location){}
+
+listColaboradores: Colaborador[] = [];
+listColaboradoresPaginated: Colaborador[] = [];
+itemsPerPage: number = 5; // Quantidade de itens por página
+currentPage: number = 1;
+totalPages: number = 1;
+pages: number[] = [];
  
 
   ngOnInit(): void {
@@ -28,7 +35,6 @@ export class ListsComponent implements OnInit{
    
   }
 
-  listColaboradores: Colaborador[] = [];
   listItinerarios: NovaRotina[] = [];
 
   messageSuccess: ApiResponse | undefined | null;
@@ -62,6 +68,7 @@ export class ListsComponent implements OnInit{
     subscribe( 
       (res) => {
          this.listColaboradores = res;
+         this.updatePagination();
       }, (error) => {
        }
     )
@@ -97,8 +104,10 @@ export class ListsComponent implements OnInit{
 
               },
               (HttpErrorResponse) => {
+               if(HttpErrorResponse){
                 this.messageSuccessDeleting = null; 
-                this.messageErrorDeleting = "Erro interno de servidor!";
+                this.messageErrorDeleting = "Colaborador vinculado a registros de ponto, para a deleção exclua os dados no banco de horas!";
+               }
                }
             );
         }
@@ -133,6 +142,7 @@ export class ListsComponent implements OnInit{
       contato: form.value.contato ? form.value.contato : this.itemSelecionado?.contato,
       dataNascimento: form.value.dataNascimento ? form.value.dataNascimento : this.itemSelecionado?.dataNascimento,
       jornadaTrabalho: form.value.jornadaTrabalho ? form.value.jornadaTrabalho : this.itemSelecionado?.jornadaTrabalho,
+      status: form.value.status ? form.value.status : this.itemSelecionado?.status,
       id: undefined,
       registro: undefined,
       codigo: undefined
@@ -192,8 +202,25 @@ export class ListsComponent implements OnInit{
   }
 
  
-  
+  // Atualiza a lista exibida e a paginação
+updatePagination() {
+  this.totalPages = Math.ceil(this.listColaboradores.length / this.itemsPerPage);
+  this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  this.updateCurrentPage();
+}
 
+updateCurrentPage() {
+  const start = (this.currentPage - 1) * this.itemsPerPage;
+  const end = start + this.itemsPerPage;
+  this.listColaboradoresPaginated = this.listColaboradores.slice(start, end);
+}
 
+goToPage(page: number) {
+  if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updateCurrentPage();
+  }
+
+}
 
 }

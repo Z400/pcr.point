@@ -11,6 +11,7 @@ import { ApiResponsePonto } from './buttons/ApiResponsePonto';
 import { ApiResponseLogin } from '../login/ApiResponseLogin';
 import { Login } from '../login/Login';
 import { DadosAdministrador} from './atualizar-colaborador/DadosAdministrador';
+import { ApiResponseRegistrosColaborador } from './buttons/ApiResponseRegistrosColaborador';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,6 @@ export class MaterialComponentService {
 
   public adicionarColaborador(data: Colaborador):Observable<ApiResponse>{
     return this.http.post<ApiResponse>(`${this.url}/adicionarColaborador`, data);
-
   }
 
   public adicionarGestor(data:Gestor):Observable<ApiResponse>{
@@ -37,6 +37,15 @@ export class MaterialComponentService {
   public adicionarRotina(data: NovaRotina):Observable<ApiResponse>{
     return this.http.post<ApiResponse>(`${this.url}/adicionarItinerario`, data);
   }
+
+  public registrarPonto(codigo: number):Observable<ApiResponsePonto>{
+    return this.http.post<any>(`${this.url}/salvarPonto/${codigo}`,{});
+    }
+    
+  public login(data: Login):Observable<ApiResponseLogin>{
+    return this.http.post<any>(`${this.url}/login`, data);
+      
+    }
 
   ////////////////////////////////////GET////////////////////////////////////////////////
 
@@ -52,6 +61,18 @@ export class MaterialComponentService {
     return this.http.get<DadosAdministrador>(`${this.url}/listarDadosGestor/${email}`);
   }
 
+  public buscarPorMesEano(month: number, year: number):Observable<ApiResponsePonto>{
+    return this.http.get<any>(`${this.url}/buscarPontoMesEano?month=${month}&year=${year}`);
+  }
+
+  public buscarPorColaborador(mes: string, nome: string, ano: number):Observable<ApiResponsePonto>{
+    return this.http.get<any>(`${this.url}/buscarPontoNomeMesEano?name=${nome}&month=${mes}&year=${ano}`);
+  }
+
+  public buscarRegistroPorNome(nome: string):Observable<ApiResponseRegistrosColaborador>{
+    return this.http.get<any>(`${this.url}/buscarRegistrosPorNome?nome=${nome}`);
+
+  }
 
     ////////////////////////////////////DELETE////////////////////////////////////////////////
 
@@ -62,6 +83,10 @@ export class MaterialComponentService {
 
     public deletarItinetario(codigo: any):Observable<ApiResponse>{
       return this.http.delete<ApiResponse>(`${this.url}/deletarItinerario/${codigo}`);
+    }
+
+    public deletarRegistrosPorNome(codigo:any):Observable<ApiResponse>{
+      return this.http.delete<ApiResponse>(`${this.url}/deletarRegistrosPorNome?registro=${codigo}`);
     }
 
     ////////////////////////////////////UPDATE////////////////////////////////////////////////
@@ -76,27 +101,10 @@ export class MaterialComponentService {
     public atualizarAdministrador(codigo: any, data: DadosAdministrador):Observable<ApiResponse>{
       return this.http.put<ApiResponse>(`${this.url}/atualizarAdministrador/${codigo}`, data);
     }
+ 
 
 
-    ////////////////////////////////////REGISTRAR PONTO////////////////////////////////////////////////
-
-    public registrarPonto(codigo: number):Observable<ApiResponsePonto>{
-    return this.http.post<any>(`${this.url}/salvarPonto/${codigo}`,{});
-    }
-    
-    ////////////////////////////////////OBTER REGISTRO PERSONALIZADO////////////////////////////////////////////////
-    public buscarPorMesEano(month: number, year: number):Observable<ApiResponsePonto>{
-      return this.http.get<any>(`${this.url}/buscarPontoMesEano?month=${month}&year=${year}`);
-    }
-
-    public buscarPorColaborador(mes: string, nome: string, ano: number):Observable<ApiResponsePonto>{
-      return this.http.get<any>(`${this.url}/buscarPontoNomeMesEano?name=${nome}&month=${mes}&year=${ano}`);
-    }
-
-    public login(data: Login):Observable<ApiResponseLogin>{
-      return this.http.post<any>(`${this.url}/login`, data);
-      
-    }
+  
   
 
 }

@@ -105,49 +105,45 @@ export class MenuComponent implements OnInit{
 
     public imprimir() {
       if (this.dadosColaborador && this.dadosColaborador.data && Array.isArray(this.dadosColaborador.data)) {
-        // Agrupa os registros pelo nome do colaborador
-        const registrosAgrupados = this.dadosColaborador.data.reduce((agrupado: { [key: string]: any[] }, obj: any) => {
-          const nomeColaborador = obj.dadosFuncionario.nome;
-          if (!agrupado[nomeColaborador]) {
-            agrupado[nomeColaborador] = [];
+        const doc = new jsPDF();
+        doc.setFontSize(10);
+        let yOffset = 10;
+    
+        // Garantir que não há dados duplicados antes de adicionar ao PDF
+        this.dadosColaborador.data.forEach((obj: any) => {
+          // Verifica se o espaço disponível na página está sendo preenchido
+          if (yOffset > 270) {  // Se o yOffset exceder 270, cria uma nova página
+            doc.addPage();
+            yOffset = 10; // Reinicia o deslocamento vertical para a nova página
           }
-          agrupado[nomeColaborador].push(obj);
-          return agrupado;
-        }, {});
     
-        // Itera sobre os grupos de registros
-        Object.keys(registrosAgrupados).forEach((nomeColaborador: string) => {
-          const doc = new jsPDF();
-          doc.setFontSize(10);
-    
-          registrosAgrupados[nomeColaborador].forEach((obj: any, index: number) => {
-
-
-            const yOffset = 10 + (index * 35); // Aumentei o espaçamento para evitar sobreposição
-             doc.text(`Colaborador: ${obj.dadosFuncionario.nome}`, 10, yOffset + 5);
-            doc.text(`Data de registro: ${obj.pontoRegistrado}`, 10, yOffset + 10);
-            doc.text(`Início trabalho: ${obj.inicioTrabalho || '-'}`, 10, yOffset + 15); // Mantive o espaçamento
-            doc.text(`Início almoço: ${obj.inicioAlmoco || '-'}`, 10, yOffset + 20);
-            doc.text(`Fim almoço: ${obj.fimAlmoco || '-'}`, 10, yOffset + 25);
-            doc.text(`Fim trabalho: ${obj.fimTrabalho || '-'}`, 10, yOffset + 30);
-           
-            
-          });
-    
-          // Salva o PDF com o nome do funcionário, evitando caracteres inválidos
-          const nomeArquivo = `informacoes_${nomeColaborador.replace(/\s+/g, '_')}.pdf`;
-          doc.save(nomeArquivo);
+          // Verifique a existência dos campos antes de adicionar ao PDF
+          doc.text(`Colaborador: ${obj.dadosFuncionario.nome || 'Desconhecido'}`, 10, yOffset + 5);
+          yOffset += 5;
+          doc.text(`Data de registro: ${obj.pontoRegistrado || 'Sem data'}`, 10, yOffset + 5);
+          yOffset += 5;
+          doc.text(`Início trabalho: ${obj.inicioTrabalho || '-'}`, 10, yOffset + 5);
+          yOffset += 5;
+          doc.text(`Início almoço: ${obj.inicioAlmoco || '-'}`, 10, yOffset + 5);
+          yOffset += 5;
+          doc.text(`Fim almoço: ${obj.fimAlmoco || '-'}`, 10, yOffset + 5);
+          yOffset += 5;
+          doc.text(`Fim trabalho: ${obj.fimTrabalho || '-'}`, 10, yOffset + 5);
+          yOffset += 10; // Adiciona um espaçamento entre os registros
         });
-      }  
+    
+        // Salva o PDF
+        doc.save('relatorio_ponto.pdf');
+      } else {
+        alert('Nenhum dado encontrado para gerar o PDF!');
+      }
+    }
+    
+    
+     
     }
 
 
 
-
-
-
-
-
-  }
-
+ 
  

@@ -33,15 +33,25 @@
 		  
   
 		  <div class="row justify-content-center">
-			<div class="col-md-5 mb-4">
+			<div class="col-md-4 mb-4">
 			  <label for="email">Email:</label>
 			  <input id="email" type="email" class="form-control" name="email" required ngModel>
 			</div>
   
-			<div class="col-md-5 mb-4">
+			<div class="col-md-4 mb-2">
 			  <label for="contato">Contato:</label>
 			  <input id="contato" type="tel" class="form-control" name="contato" required ngModel>
 			</div>
+
+			<div class="col-md-2 mb-2">
+				<label>Status:</label>
+				<select class="form-control" ngModel name="status" required>
+					<option selected disabled value="">ATIVO/INATIVO</option>
+					<option value="ATIVO">ATIVO</option>
+					<option value="INATIVO">INATIVO</option>
+				</select>
+			</div>
+
 		  </div>
 
 

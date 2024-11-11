@@ -10,5 +10,6 @@ export class Colaborador{
     funcao: string | undefined
     jornadaTrabalho: string | undefined
     codigo: string | undefined
+    status: string | undefined
 
 }

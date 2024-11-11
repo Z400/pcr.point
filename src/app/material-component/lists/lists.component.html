@@ -4,66 +4,77 @@
 <!-- Fixed height Card Grid-->
 <!-- ============================================================== -->
 <div class="row">
+	 
 	<div class="col-12">
 		<mat-card>
 			<mat-card-content>
 				<mat-card-title>Listar colaboradores</mat-card-title>
-				<mat-card-subtitle>Todos os colaboradores serão inclusos na tabela a baixo:</mat-card-subtitle>
-			 <div class="row">
-				<div class="col-md-12">
-				 
-					<div class="table-responsive">
-						<table class="table table-condensed table-hover">
+				<mat-card-subtitle>Todos os colaboradores serão inclusos na tabela abaixo:</mat-card-subtitle>
+			 
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<table class="table table-condensed table-hover">
+								<thead>
+									<tr>
+										<th>N° Registro</th>
+										<th>Colaborador</th>
+										<th>Função</th>
+										<th>DT. Aniversario</th>
+										<th>Contato</th>
+										<th>Email</th>
+										<th>Status</th>
+										<th>Ação</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let item of listColaboradoresPaginated">
+										<td>{{item.registro}}</td>
+										<td>{{item.nome}}</td>
+										<td>{{item.funcao}}</td>
+										<td>{{item.dataNascimento | date:"dd/MM/yyyy"}}</td>
+										<td>{{item.contato}}</td>
+										<td>{{item.status}}</td>
+										<td>{{item.email}}</td>
+										<td class="d-flex gap-1"> 
+											<button class="btn btn-success" title="Alterar colaborador" (click)="selecionarItem(item)" data-bs-toggle="modal" data-bs-target="#modalAtualizar">
+												<i class="bi bi-pencil"></i>
+											</button>
+											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelecao" title="Apagar colaborador" (click)="selecionarItem(item)">
+												<i class="bi bi-trash"></i>
+											</button>											
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-							<thead>
-								<tr>
-									
-									<th>N° Registro</th>
-									<th>Colaborador</th>
-									<th>Função</th>
-									<th>DT. Aniversario</th>
-									<th>Contato</th>
-									<th>Email</th>
-									<th>Ação</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let item of listColaboradores">
-									
-									
-									<td>{{item.registro}}</td>
-									<td>{{item.nome}}</td>
-									<td>{{item.funcao}}</td>
-									<td>{{item.dataNascimento | date:"dd/MM/yyyy"}}</td>
-									<td>{{item.contato}}</td>
-									<td>{{item.email}}</td>
-									<td class="d-flex gap-1"> 
-										
-								<button class="btn btn-success" title="Alterar colaborador" (click)="selecionarItem(item)" data-bs-toggle="modal" data-bs-target="#modalAtualizar">
-								   <i class="bi bi-pencil"></i>
-								</button>
-												 
-								 
-	
-								<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelecao" title="Apagar colaborador" (click)="selecionarItem(item)">
-									<i class="bi bi-trash"></i>
-								</button>
-											
-	
-								</td>
-								</tr>
-							</tbody>
-	
-	
-						</table>
+						<!-- Pagination Controls -->
+						<nav aria-label="Page navigation" class="d-flex justify-content-center mt-3" style="cursor: pointer;">
+							<ul class="pagination">
+								<li class="page-item" [class.disabled]="currentPage === 1">
+									<a class="page-link" (click)="goToPage(currentPage - 1)" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>
+								<li *ngFor="let page of pages" class="page-item" [class.active]="page === currentPage">
+									<a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+								</li>
+								<li class="page-item" [class.disabled]="currentPage === totalPages">
+									<a class="page-link" (click)="goToPage(currentPage + 1)" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+						
 					</div>
-
-
 				</div>
-			 </div>
 			</mat-card-content>
 		</mat-card>
 	</div>
+
+
 </div> 
 
 <div class="row">
@@ -169,10 +180,20 @@
 									<input type="text" class="form-control" name="funcao" ngModel required="" value="{{itemSelecionado?.funcao}}">
 								 </div>
 	
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<label>Contato:</label>
 								<input type="tel" class="form-control" name="contato" ngModel required="" value="{{itemSelecionado?.contato}}">
-							</div>								
+							</div>		
+							
+							<div class="col-md-3">
+								<label>Status:</label>
+								<select class="form-control" name="status" required ngModel >
+									<option selected disabled value="">ATIVO/INATIVO</option>
+									<option value="ATIVO">ATIVO</option>
+									<option value="INATIVO">INATIVO</option>
+								</select>
+							</div>
+							
 							</div>
 
 							<div class="row">
@@ -203,7 +224,7 @@
     </div>
 </div>
 
-<!-- MODAL DE DELEÇÃO COLABORADOR-->
+<!-- MODAL DELEÇÃO COLABORADOR-->
 <div class="modal fade" id="modalDelecao" tabindex="-1" data-bs-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content"> 

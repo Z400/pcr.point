@@ -25,7 +25,6 @@ export class ButtonsComponent implements OnInit{
 
   messageSuccess: ApiResponse | undefined | null;
   messageError: ApiResponse | undefined | null;
-
   
   listItinerarios: NovaRotina | undefined;
   itinerarios: NovaRotina[] = [];
@@ -38,11 +37,12 @@ export class ButtonsComponent implements OnInit{
       contato: form.value.contato,
       funcao: form.value.funcao,
       jornadaTrabalho: form.value.jornadaTrabalho,
+      status: form.value.status,
       id: undefined,
       registro: undefined,
       codigo: undefined
     } 
-    
+   
     this.service.adicionarColaborador(data).subscribe(
       res => {
         this.messageSuccess = res;
@@ -56,8 +56,7 @@ export class ButtonsComponent implements OnInit{
       }, error => {
          this.messageSuccess = null;
         this.messageError = error;
-          
-      }
+         }
     )}
 
   public listarItinerarios(){
