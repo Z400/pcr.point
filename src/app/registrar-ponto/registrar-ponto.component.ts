@@ -61,37 +61,35 @@ export class RegistrarPontoComponent {
   }
 
 
-  imprimir(){
+  imprimir() {
     const element = document.createElement('div');
     element.innerHTML = `
-  <h3>Registro de ponto</h3>
-    <p>Nome: ${this.responseApi?.data?.dadosFuncionario?.nome ?? 'Não registrado'}</p>
-    <p>Registro: ${this.responseApi?.data?.dadosFuncionario?.registro ?? 'Não registrado'}</p>
-    <p>Jornada de trabalho: ${this.responseApi?.data?.dadosFuncionario?.jornadaTrabalho ?? 'Não registrado'}</p>
-    <p>Início de expediente: ${this.responseApi?.data?.inicioTrabalho?.slice(0, 6).join('-') ?? 'Não registrado'}</p>
-    <p>Início de almoço: ${this.responseApi?.data?.inicioAlmoco?.slice(0, 6).join('-') ?? 'Não registrado'}</p>
-    <p>Fim de almoço: ${this.responseApi?.data?.fimAlmoco?.slice(0, 6).join('-') ?? 'Não registrado'}</p>
-      <p>Fim de expediente: ${this.responseApi?.data.fimTrabalho ? this.responseApi.data.fimTrabalho.slice(0, 6).join('-') : 'Não registrado'}</p>
-    
-    `
-  // Aplica alguns estilos básicos ao div
-  element.style.width = '400px';
-  element.style.padding = '10px';
-  element.style.border = '1px solid #000';
-  element.style.backgroundColor = '#fff';
-  document.body.appendChild(element); // Adiciona ao corpo do documento temporariamente
-
-  // Usa html2canvas para capturar o conteúdo do div e gerar a imagem
-  html2canvas(element).then((canvas) => {
-    const link = document.createElement('a');
-    link.download = 'ponto-registrado.png';
-    link.href = canvas.toDataURL();
-    link.click(); // Faz o download da imagem
-
-    document.body.removeChild(element); // Remove o div temporário
+      <h3>Registro de ponto</h3>
+      <p>Nome: ${this.responseApi?.data?.dadosFuncionario?.nome ?? 'Não registrado'}</p>
+      <p>Registro: ${this.responseApi?.data?.dadosFuncionario?.registro ?? 'Não registrado'}</p>
+      <p>Jornada de trabalho: ${this.responseApi?.data?.dadosFuncionario?.jornadaTrabalho ?? 'Não registrado'}</p>
+      <p>Início de expediente: ${this.responseApi?.data?.inicioTrabalho ?? 'Não registrado'}</p>
+      <p>Início de almoço: ${this.responseApi?.data?.inicioAlmoco ?? 'Não registrado'}</p>
+      <p>Fim de almoço: ${this.responseApi?.data?.fimAlmoco ?? 'Não registrado'}</p>
+      <p>Fim de expediente: ${this.responseApi?.data?.fimTrabalho ?? 'Não registrado'}</p>
+    `;
   
-  });
-
-}
-
+    // Aplica alguns estilos básicos ao div
+    element.style.width = '400px';
+    element.style.padding = '10px';
+    element.style.border = '1px solid #000';
+    element.style.backgroundColor = '#fff';
+    document.body.appendChild(element); // Adiciona ao corpo do documento temporariamente
+  
+    // Usa html2canvas para capturar o conteúdo do div e gerar a imagem
+    html2canvas(element).then((canvas) => {
+      const link = document.createElement('a');
+      link.download = 'ponto-registrado.png';
+      link.href = canvas.toDataURL();
+      link.click(); // Faz o download da imagem
+  
+      document.body.removeChild(element); // Remove o div temporário
+    });
+  }
+  
 }

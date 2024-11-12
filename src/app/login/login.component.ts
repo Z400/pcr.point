@@ -36,6 +36,7 @@ public login(form: NgForm){
     (res) => {
       this.messageSuccessLogin = res; 
       this.messageErrorLogin = null;
+      this.messageErrorInterno = null;
       setTimeout(() => {
         alert("Redirecionando para dashboard!");
         localStorage.setItem("currentUser", data.email);
