@@ -38,8 +38,7 @@ export class RegistrarPontoComponent {
     this.service.registrarPonto(dataNumber).subscribe(
       (res) => {   
      
-        console.log("Resposta api:", res);
-        this.responseApi = res;
+         this.responseApi = res;
         this.messageSuccess = res;
         this.messageError = null;
         this.messageErrorInterno = null;
@@ -55,8 +54,7 @@ export class RegistrarPontoComponent {
         }else{
           this.messageError = error.error;
         }
-        console.log("ERROR:", error);
-      }
+       }
     )
   }
 
